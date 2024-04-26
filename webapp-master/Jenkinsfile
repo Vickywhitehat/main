@@ -33,7 +33,7 @@ pipeline {
         
         stage('Static Code Analysis with Semgrep') {
             steps {
-                sh 'docker run semgrep/semgrep:latest /path/to/your/code'
+                sh 'docker run semgrep/semgrep:latest /main/webapp-master'
             }
         }
     }
