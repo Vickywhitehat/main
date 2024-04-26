@@ -16,11 +16,12 @@ pipeline {
         stage ('Check-Git-Secrets') {
             steps {
                 sh 'rm trufflehog || true'
-                sh 'docker run gesellix/trufflehog --json https://github.com/cehkunal/webapp.git > trufflehog'
+                sh 'docker run gesellix/trufflehog --json https://github.com/Vickywhitehat/main/edit/main/webapp-master > trufflehog'
                 sh 'cat trufflehog'
             }
         }
         
+        /*
         stage ('Source Composition Analysis') {
             steps {
                 sh 'rm owasp* || true'
@@ -30,10 +31,11 @@ pipeline {
                 sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
             }
         }
+        */
         
         stage('Static Code Analysis with Semgrep') {
             steps {
-                sh 'docker run semgrep/semgrep:latest /main/webapp-master'
+                sh 'docker run semgrep/semgrep:latest /workspace/webapp-master'
             }
         }
     }
